@@ -1,0 +1,23 @@
+.form {
+    display: flex;
+}
+
+.form div {
+    margin-bottom: 10px;
+}
+
+ .submit {
+    text-align: center;
+}
+
+label {
+    padding-left:26px;
+    width:125px;
+    display:inline-block
+}
+
+.required::after {
+    content: "*";
+    color: red;
+  }
+

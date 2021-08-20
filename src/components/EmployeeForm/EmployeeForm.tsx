@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import './EmployeeForm.css';
+import {differenceInBusinessDays} from 'date-fns';
 
 const EmployeeForm = () => {
     const [employeeDetails, setEmpDetails] = useState<any>({});
@@ -23,7 +24,8 @@ const EmployeeForm = () => {
             const startDate = new Date(details['startDate']);
             const endDate = new Date(details['endDate']);
             const Difference_In_Time = endDate.getTime() - startDate.getTime();
-            let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            // let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+            let Difference_In_Days = differenceInBusinessDays(endDate, startDate)
             if (Difference_In_Days < 0) {
                 details[id] = '';
                 setEmpDetails(details);

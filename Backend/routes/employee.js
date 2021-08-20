@@ -13,13 +13,15 @@ router.route('/add').post((req,res) =>{
     const employeeName = req.body.employeeName;
     const startDate = Date.parse(req.body.startDate);
     const endDate = Date.parse(req.body.endDate);
+    const appliedLeaves = Number(req.body.appliedLeaves);
 
     const newEmployee = new employee({
         employeeId,
         PSID,
         employeeName,
         startDate,
-        endDate
+        endDate,
+        appliedLeaves
     })
 
     newEmployee.save()
@@ -41,6 +43,7 @@ router.route('/update/:id').post((req,res) =>{
             Employee.employeeName = req.body.employeeName;
             Employee.startDate = Date.parse(req.body.startDate);
             Employee.endDate = Date.parse(req.body.endDate);
+            Employee.appliedLeaves = Number(req.body.appliedLeaves);
 
             Employee.save()
                 .then(() => res.json('Successfully Updated'))

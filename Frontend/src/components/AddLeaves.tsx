@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react';
-import './EmployeeForm.css';
+import React, { useState } from 'react';
+import '../components/CSS/AddLeaves.css';
 
-const EmployeeForm = () => {
+const AddLeaves = () => {
 const [employeeDetails, setEmpDetails] = useState<any>({});
 const [leaveDays, setLeaveDays] = useState<undefined | number>();
 
@@ -68,4 +68,4 @@ const [leaveDays, setLeaveDays] = useState<undefined | number>();
     )
 
 }
-export default EmployeeForm;
+export default AddLeaves;

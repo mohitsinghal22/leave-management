@@ -15,9 +15,9 @@ function App() {
       <Switch>
         <Route exact path='/' component={Homepage}/>
         <Route exact path='/employee' component={Employee}/>
-        <Route path='/user/addLeaves' component={AddLeaves}/>
-        <Route path='/user/deleteLeaves' component={DeleteLeaves}/>
-        <Route path='/user/updateLeaves' component={UpdateLeaves}/>
+        <Route path='/employee/addLeaves' component={AddLeaves}/>
+        <Route path='/employee/deleteLeaves' component={DeleteLeaves}/>
+        <Route path='/employee/updateLeaves' component={UpdateLeaves}/>
         <Route exact path='/admin' component={Admin}/>
       </Switch> 
     </Router>

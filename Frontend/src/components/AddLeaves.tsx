@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 const AddLeaves = () => {
-const [employeeDetails, setEmpDetails] = useState<any>({});
+const [employeeDetails, setEmpDetails] = useState<any>({employeeId: '', PSID:'', employeeName: '', startDate: '', endDate: ''});
 const [leaveDays, setLeaveDays] = useState<undefined | number>();
 const history = useHistory();
 
@@ -26,7 +26,7 @@ const history = useHistory();
         payload[id] = event.target.value;
         let details = { ...employeeDetails, ...payload };
         setEmpDetails(details);
-        if (details.hasOwnProperty('startDate') && details.hasOwnProperty('endDate')) {
+        if (details['startDate'] !== '' && details['endDate'] !== '') {
             const startDate = new Date(details['startDate']);
             const endDate = new Date(details['endDate']);
             let Difference_In_Days = differenceInBusinessDays(endDate, startDate)

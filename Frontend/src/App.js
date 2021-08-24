@@ -6,7 +6,7 @@ import Employee from './components/Employee';
 import AddLeaves from './components/AddLeaves';
 import DeleteLeaves from './components/DeleteLeaves';
 import UpdateLeaves from './components/UpdateLeaves';
-import Admin from './components/Admin';
+import Leavedetails from './components/LeaveDetails';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path='/employee/addLeaves' component={AddLeaves}/>
         <Route path='/employee/deleteLeaves' component={DeleteLeaves}/>
         <Route path='/employee/updateLeaves' component={UpdateLeaves}/>
-        <Route exact path='/admin' component={Admin}/>
+        <Route exact path='/admin' component={Leavedetails}/>
       </Switch> 
     </Router>
   );

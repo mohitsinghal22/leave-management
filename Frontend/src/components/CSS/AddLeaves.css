@@ -1,10 +1,8 @@
-
-
 .form div {
     margin-bottom: 15px;
 }
 
- .submit {
+ .submit, .form {
     text-align: center;
 }
 

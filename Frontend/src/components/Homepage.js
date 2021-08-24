@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom'
 
 export default function Homepage() {
     return (
         <div>
-            <h1>Employee Leave Tracker</h1>
+            <ul>
+                <li><Link to='/employee'>Employee</Link></li>
+                <li><Link to='/admin'>Admin</Link></li>
+            </ul>
         </div>
     )
 }

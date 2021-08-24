@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import '../components/CSS/AddLeaves.css';
 import {differenceInBusinessDays} from 'date-fns';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const AddLeaves = () => {
 const [employeeDetails, setEmpDetails] = useState<any>({});
 const [leaveDays, setLeaveDays] = useState<undefined | number>();
+const history = useHistory();
 
-    const submitForm = () => {
+    const submitForm = (event: any) => {
+        event.preventDefault()
         if (leaveDays && leaveDays < 0) {
             alert('End date must be later than start date')
         } else {
-            alert('Data Submitted')
-            console.log(employeeDetails)
+            axios.post('http://localhost:5000/employees/add', employeeDetails).then((res)=> {
+                alert(res.data);
+                history.push('/employee');
+            })
         }
     }
 
@@ -23,15 +29,14 @@ const [leaveDays, setLeaveDays] = useState<undefined | number>();
         if (details.hasOwnProperty('startDate') && details.hasOwnProperty('endDate')) {
             const startDate = new Date(details['startDate']);
             const endDate = new Date(details['endDate']);
-            const Difference_In_Time = endDate.getTime() - startDate.getTime();
-            // let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
             let Difference_In_Days = differenceInBusinessDays(endDate, startDate)
             if (Difference_In_Days < 0) {
                 details[id] = '';
                 setEmpDetails(details);
                 alert('End date must be later than start date');
-
             } else {
+                details = { ...details, ...{ appliedLeaves: Difference_In_Days} };
+                setEmpDetails(details);
                 setLeaveDays(Difference_In_Days);
 
             }
@@ -42,18 +47,18 @@ const [leaveDays, setLeaveDays] = useState<undefined | number>();
     return (
         <div className="form">
             <div><h4>Enter the following details:</h4></div>
-            <form onSubmit={() => submitForm()}>
+            <form onSubmit={(event) => submitForm(event)}>
                 <div>
                     <label className="required">EmployeeID</label>
-                    <input required value={employeeDetails.empId} onChange={(event) => updateValue(event, 'empId')} />
+                    <input required value={employeeDetails.employeeId} onChange={(event) => updateValue(event, 'employeeId')} />
                 </div>
                 <div>
                     <label className="required">PSID</label>
-                    <input required value={employeeDetails.psId} onChange={(event) => updateValue(event, 'psId')} />
+                    <input required value={employeeDetails.PSID} onChange={(event) => updateValue(event, 'PSID')} />
                 </div>
                 <div>
                     <label className="required">Employee Name</label>
-                    <input required value={employeeDetails.empName} onChange={(event) => updateValue(event, 'empName')} />
+                    <input required value={employeeDetails.employeeName} onChange={(event) => updateValue(event, 'employeeName')} />
                 </div>
                 <div>
                     <label className="required">Start Date</label>

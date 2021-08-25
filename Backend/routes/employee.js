@@ -30,7 +30,10 @@ router.route('/add').post((req,res) =>{
 });
 
 router.route('/:id').get((req,res)=>{
-    employee.findById(req.params.id)
+    // employee.findById(req.params.id)
+    //     .then(employeeDetails => res.json(employeeDetails))
+    //     .catch(err => res.status(400).json(`Error get by id - ${err}`));
+    employee.find({employeeId: req.params.id})
         .then(employeeDetails => res.json(employeeDetails))
         .catch(err => res.status(400).json(`Error get by id - ${err}`));
 });

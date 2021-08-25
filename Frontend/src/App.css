@@ -38,3 +38,25 @@
     transform: rotate(360deg);
   }
 }
+
+ul {
+  list-style: none;
+}
+
+.home-page li {
+  display: table-caption;
+  padding: 1%;
+  border: 1px solid #f7f7f7;
+  width: 75px;
+  margin: 1%;
+}
+
+.home-page svg {
+  height: 50px;
+  width: 50px;
+}
+
+.home-page {
+    display: flex;
+    justify-content: center;
+}

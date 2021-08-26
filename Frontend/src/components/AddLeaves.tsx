@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../components/CSS/AddLeaves.css';
-import {differenceInBusinessDays} from 'date-fns';
+import {differenceInBusinessDays, isWeekend} from 'date-fns';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import format from 'date-fns/format';
@@ -19,13 +19,15 @@ const getLeaves = (details: any, id?: string) => {
     && details.hasOwnProperty('startDate') && details.hasOwnProperty('endDate') ) {
         const startDate:any = new Date(details['startDate']);
         const endDate:any = new Date(details['endDate']);
-        let Difference_In_Days = differenceInBusinessDays(endDate, startDate)
+        let Difference_In_Days = differenceInBusinessDays(endDate, startDate);
         if (Difference_In_Days < 0) {
             alert('End date must be later than start date');
-        } else {
+            if (id) details[id] = '';
+        } else if (isWeekend(startDate) || isWeekend(endDate)) {
             return Difference_In_Days;
-
-        }
+        } 
+        else 
+            return Difference_In_Days + 1;
     }
 }
 

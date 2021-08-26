@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { isFuture } from 'date-fns';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Edit } from './CSS/svg';
@@ -52,7 +53,7 @@ export default function UpdateLeaves() {
                                  <td>{employee.employeeName}</td>
                                  <td>{getDate(employee.startDate)}</td>
                                  <td>{getDate(employee.endDate)}</td>
-                                 <td><Link to={{pathname: 'addLeaves', state: employee}}>{<Edit />}</Link></td>
+                                 <td>{isFuture(new Date(employee.endDate)) && <Link to={{pathname: 'addLeaves', state: employee}}>{<Edit />}</Link>}</td>
                               </tr>
                            )
                         )}

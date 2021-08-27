@@ -13,7 +13,6 @@ export class Leavedetails extends Component {
       super(props);
       this.state = {
          filteredEmpDetails: [],
-
          startDate: '',
          endDate: '',
       };
@@ -48,24 +47,25 @@ export class Leavedetails extends Component {
 
       this.setState({ filteredEmpDetails: result });
    };
+
    onFileDownload = () => {
       const wb1 = XLSX.utils.book_new();
       wb1.Props = {
-         Title: 'Merged Sheet',
+         Title: 'Leave Data',
       };
 
-      wb1.SheetNames.push('Merged Data');
+      wb1.SheetNames.push('LeaveData');
       const ws1 = XLSX.utils.json_to_sheet(this.state.filteredEmpDetails);
-      wb1.Sheets['Merged Data'] = ws1;
+      wb1.Sheets['LeaveData'] = ws1;
       const outputSheet1 = XLSX.write(wb1, {
          bookType: 'xlsx',
          type: 'binary',
       });
 
-      var buf1 = new ArrayBuffer(outputSheet1.length); //convert outputSheet to arrayBuffer
-      var view1 = new Uint8Array(buf1); //create uint8array as viewer
+      var buf1 = new ArrayBuffer(outputSheet1.length); 
+      var view1 = new Uint8Array(buf1); 
       for (var j = 0; j < outputSheet1.length; j++)
-         view1[j] = outputSheet1.charCodeAt(j) & 0xff; //convert to octet
+         view1[j] = outputSheet1.charCodeAt(j) & 0xff; 
       saveAs(
          new Blob([buf1], { type: 'application/octet-stream' }),
          'EmployeesLeavesDetails.xlsx'

@@ -35,17 +35,17 @@ export class Leavedetails extends Component {
 
       if (this.state.endDate <= this.state.startDate) {
          alert('Enter valid Start and End Dates');
+      }else{
+         var result = this.state.employeeLeaveDetails.filter((obj) => {
+            return (
+               (obj.startDate >= this.state.startDate &&
+                  obj.startDate <= this.state.endDate) ||
+               (obj.endDate >= this.state.startDate &&
+                  obj.endDate <= this.state.endDate)
+            );
+         });
+         this.setState({ filteredEmpDetails: result });
       }
-      var result = this.state.employeeLeaveDetails.filter((obj) => {
-         return (
-            (obj.startDate >= this.state.startDate &&
-               obj.startDate <= this.state.endDate) ||
-            (obj.endDate >= this.state.startDate &&
-               obj.endDate <= this.state.endDate)
-         );
-      });
-
-      this.setState({ filteredEmpDetails: result });
    };
 
    onFileDownload = () => {

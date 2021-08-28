@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
 import Employee from './components/Employee';
 import AddLeaves from './components/AddLeaves';
-import DeleteLeaves from './components/DeleteLeaves';
 import UpdateLeaves from './components/UpdateLeaves';
 import Leavedetails from './components/LeaveDetails';
 
@@ -16,7 +15,6 @@ function App() {
         <Route exact path='/' component={Homepage}/>
         <Route exact path='/employee' component={Employee}/>
         <Route path='/employee/addLeaves' component={AddLeaves}/>
-        <Route path='/employee/deleteLeaves' component={DeleteLeaves}/>
         <Route path='/employee/updateLeaves' component={UpdateLeaves}/>
         <Route exact path='/admin' component={Leavedetails}/>
       </Switch> 

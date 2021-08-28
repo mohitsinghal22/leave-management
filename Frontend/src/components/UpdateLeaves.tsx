@@ -2,11 +2,11 @@ import axios from 'axios';
 import { isFuture } from 'date-fns';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Edit } from './CSS/svg';
+import { Edit,Delete } from './CSS/svg';
 
 export default function UpdateLeaves() {
 
-    const [employeeId, setId] = useState('');
+    const [employeeId, setId] = useState('00000');
     const [data, setData] = useState([]);
 
     const storeValue = (event: any) => {
@@ -17,6 +17,14 @@ export default function UpdateLeaves() {
         const url = 'http://localhost:5000/employees/' + employeeId;
         axios.get(url).then(res => {
             setData(res.data);
+        })
+    }
+
+    const remove = (removeEmployee : any) =>{
+        const url = 'http://localhost:5000/employees/delete/' + removeEmployee._id;
+        axios.delete(url).then(res =>{
+            alert('Deleted SuccessFully.')
+            search()
         })
     }
 
@@ -42,6 +50,7 @@ export default function UpdateLeaves() {
                            <th>Start Date</th>
                            <th>End Date</th>
                            <th>Update</th>
+                           <th>Delete</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -54,10 +63,11 @@ export default function UpdateLeaves() {
                                  <td>{getDate(employee.startDate)}</td>
                                  <td>{getDate(employee.endDate)}</td>
                                  <td>{isFuture(new Date(employee.endDate)) && <Link to={{pathname: 'addLeaves', state: employee}}>{<Edit />}</Link>}</td>
+                                 <td>{isFuture(new Date(employee.endDate)) && <button onClick={()=> remove(employee)}><Delete/></button>}</td>
                               </tr>
                            )
                         )}
-                        {data.length === 0 && <tr><td colSpan={6}>No records</td></tr>}
+                        {data.length === 0 && <tr><td colSpan={7}>No records</td></tr>}
                      </tbody>
                   </table>
             </div>

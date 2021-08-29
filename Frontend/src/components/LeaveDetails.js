@@ -20,7 +20,7 @@ export class Leavedetails extends Component {
    }
 
    componentDidMount() {
-      axios.get('http://localhost:5000/employees/').then((res) => {
+      axios.get('https://leavetrackers.herokuapp.com/employees/').then((res) => {
          this.setState({ employeeLeaveDetails: res.data });
       });
    }

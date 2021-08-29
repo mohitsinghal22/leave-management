@@ -14,14 +14,14 @@ export default function UpdateLeaves() {
     }
 
     const search = () => {
-        const url = 'http://localhost:5000/employees/' + employeeId;
+        const url = 'https://leavetrackers.herokuapp.com/employees/' + employeeId;
         axios.get(url).then(res => {
             setData(res.data);
         })
     }
 
     const remove = (removeEmployee : any) =>{
-        const url = 'http://localhost:5000/employees/delete/' + removeEmployee._id;
+        const url = 'https://leavetrackers.herokuapp.com/employees/delete/' + removeEmployee._id;
         axios.delete(url).then(res =>{
             alert('Deleted SuccessFully.')
             search()

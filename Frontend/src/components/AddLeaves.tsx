@@ -40,11 +40,11 @@ const history = useHistory();
             alert('End date must be later than start date')
         } else {
             employee ? 
-            axios.post('http://localhost:5000/employees/update/'+employee._id, employeeDetails).then((res)=> {
+            axios.post('https://leavetrackers.herokuapp.com/employees/update/'+employee._id, employeeDetails).then((res)=> {
                 alert(res.data);
                 history.push('/employee');
             }):
-            axios.post('http://localhost:5000/employees/add', employeeDetails).then((res)=> {
+            axios.post('https://leavetrackers.herokuapp.com/employees/add', employeeDetails).then((res)=> {
                 alert(res.data);
                 history.push('/employee');
             })

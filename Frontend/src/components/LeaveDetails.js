@@ -13,13 +13,14 @@ export class Leavedetails extends Component {
       super(props);
       this.state = {
          filteredEmpDetails: [],
+         employeeLeaveDetails: [],
          startDate: '',
          endDate: '',
       };
    }
 
    componentDidMount() {
-      axios.get(`http://localhost:5000/employees/`).then((res) => {
+      axios.get('http://localhost:5000/employees/').then((res) => {
          this.setState({ employeeLeaveDetails: res.data });
       });
    }
